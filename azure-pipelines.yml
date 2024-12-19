@@ -1,0 +1,25 @@
+trigger:
+  branches:
+    include:
+      - main  # O la rama que uses para despliegues
+
+pool: my_agent_pool
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '22.x'  # Asegúrate de que sea la versión de Node.js que necesitas
+    displayName: 'Install Node.js'
+
+  - checkout: self  # Esto descargará el código de tu repositorio
+
+- script: |
+    npm install
+  displayName: 'npm install'
+
+- script: |
+    npm run build
+  displayName: 'npm  build'
+
+  - publish: $(Build.ArtifactStagingDirectory)
+    artifact: react-build
