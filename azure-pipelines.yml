@@ -24,7 +24,7 @@ steps:
 
   - task: CopyFiles@2
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)/build'  # Asegúrate de que esta sea la ruta correcta de tu build
+      SourceFolder: '$(Build.SourcesDirectory)/dist'  # Asegúrate de que esta sea la ruta correcta de tu build
       TargetFolder: '$(Build.ArtifactStagingDirectory)'  # Copia el contenido a ArtifactStagingDirectory
     displayName: 'Copy build files to artifact staging directory'
 
