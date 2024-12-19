@@ -21,13 +21,20 @@ steps:
       npm run build
     displayName: 'npm build'
 
-
   - task: CopyFiles@2
     inputs:
       SourceFolder: '$(Build.SourcesDirectory)/dist'  # Asegúrate de que esta sea la ruta correcta de tu build
       TargetFolder: '$(Build.ArtifactStagingDirectory)'  # Copia el contenido a ArtifactStagingDirectory
     displayName: 'Copy build files to artifact staging directory'
 
-  - publish: $(Build.ArtifactStagingDirectory)
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'  # Directorio que contiene los archivos de build
+      includeRootFolder: false
+      archiveType: 'zip'  # Empaquetar como .zip
+      archiveFile: '$(Build.ArtifactStagingDirectory)/react-build.zip'  # Nombre del archivo zip
+    displayName: 'Create .zip of build files'
+
+  - publish: '$(Build.ArtifactStagingDirectory)/react-build.zip'
     artifact: react-build
     displayName: 'Publish React build'
