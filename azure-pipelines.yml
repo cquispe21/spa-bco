@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - main  # O la rama que uses para despliegues
+      - main  # O la rama que usas para despliegues
 
 pool: my_agent_pool
 
@@ -13,13 +13,14 @@ steps:
 
   - checkout: self  # Esto descargará el código de tu repositorio
 
-- script: |
-    npm install
-  displayName: 'npm install'
+  - script: |
+      npm install
+    displayName: 'npm install'
 
-- script: |
-    npm run build
-  displayName: 'npm  build'
+  - script: |
+      npm run build
+    displayName: 'npm build'
 
   - publish: $(Build.ArtifactStagingDirectory)
     artifact: react-build
+    displayName: 'Publish React build'
