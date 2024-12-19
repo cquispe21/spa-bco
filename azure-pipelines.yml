@@ -21,9 +21,6 @@ steps:
       npm run build
     displayName: 'npm build'
 
-  - script: |
-      ls -R $(Build.SourcesDirectory)/build  # Verifica si la carpeta 'build' contiene los archivos generados
-    displayName: 'List build directory'
 
   - task: CopyFiles@2
     inputs:
