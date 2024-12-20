@@ -30,7 +30,7 @@ function App() {
       console.log(error)
     }
   }
-
+  console.log('API URL:', import.meta.env.VITE_API_URL); // Debería mostrar la URL de la API
 
 
   return (
