@@ -18,7 +18,7 @@ steps:
     displayName: 'npm install'
 
   - script: |
-      npm run build --mode test
+      npm run build --mode=test
     displayName: 'npm build'
 
   - task: CopyFiles@2
